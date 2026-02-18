@@ -1,0 +1,86 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-display: "Space Grotesk", system-ui, sans-serif;
+
+  --color-void: #050208;
+  --color-abyss: #0a0614;
+  --color-deep: #0f0a1e;
+  --color-surface: #16102a;
+  --color-card: #1e1638;
+  --color-muted: #8b7fad;
+  --color-text: #e2ddf0;
+  --color-heading: #f5f1ff;
+
+  --color-accent-start: #7c3aed;
+  --color-accent-mid: #a855f7;
+  --color-accent-end: #c084fc;
+  --color-accent-glow: #a78bfa;
+
+  --color-cyan-start: #06b6d4;
+  --color-cyan-mid: #22d3ee;
+
+  --animate-gradient: gradient 12s ease infinite;
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-float-delayed: float 8s ease-in-out 2s infinite;
+  --animate-fade-in: fade-in 1.2s ease-out forwards;
+  --animate-fade-in-up: fade-in-up 1s ease-out forwards;
+  --animate-pulse-glow: pulse-glow 4s ease-in-out infinite;
+  --animate-orbit: orbit 20s linear infinite;
+  --animate-shimmer: shimmer 3s ease-in-out infinite;
+}
+
+@keyframes gradient {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  33% { transform: translateY(-18px) rotate(1deg); }
+  66% { transform: translateY(10px) rotate(-1deg); }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { text-shadow: 0 0 20px rgba(168, 139, 250, 0.3), 0 0 60px rgba(168, 139, 250, 0.1); }
+  50% { text-shadow: 0 0 30px rgba(168, 139, 250, 0.5), 0 0 80px rgba(168, 139, 250, 0.2); }
+}
+
+@keyframes orbit {
+  from { transform: rotate(0deg) translateX(120px) rotate(0deg); }
+  to { transform: rotate(360deg) translateX(120px) rotate(-360deg); }
+}
+
+@keyframes shimmer {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.8; }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background-color: var(--color-void);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background-color: rgba(124, 58, 237, 0.4);
+  color: var(--color-heading);
+}
