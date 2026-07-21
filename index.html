@@ -3,15 +3,142 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="NatsumeAoii — Coming Soon. Something amazing is being crafted." />
-    <meta name="theme-color" content="#0f0a1e" />
+
+    <title>Wardana Dwi Mulia — Portfolio</title>
+    <meta
+      name="description"
+      content="Portfolio of Wardana Dwi Mulia, an Informatics Engineering graduate working in IT support, quality assurance, manual testing, and data management. View projects, experience, and skills."
+    />
+    <meta
+      name="keywords"
+      content="Wardana Dwi Mulia, portfolio, Informatics Engineering, IT Support, Quality Assurance, Manual Testing, Data Management, QA, web developer, Indonesia, NatsumeAoii"
+    />
+    <meta name="author" content="Wardana Dwi Mulia" />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#f5f3fc" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0f0a1e" media="(prefers-color-scheme: dark)" />
+    <link rel="canonical" href="https://natsumeaoii.github.io/" />
+    <link rel="alternate" hreflang="en" href="https://natsumeaoii.github.io/" />
+    <link rel="alternate" hreflang="id" href="https://natsumeaoii.github.io/" />
+    <link rel="alternate" hreflang="x-default" href="https://natsumeaoii.github.io/" />
+
+    <!-- Icons & manifest -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/favicon.svg" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Wardana Dwi Mulia" />
+    <meta property="og:title" content="Wardana Dwi Mulia — Portfolio" />
+    <meta
+      property="og:description"
+      content="Informatics Engineering graduate · IT Support · Quality Assurance · Manual Testing · Data Management."
+    />
+    <meta property="og:url" content="https://natsumeaoii.github.io/" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale:alternate" content="id_ID" />
+    <meta
+      property="og:image"
+      content="https://natsumeaoii.github.io/og-image.svg"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Wardana Dwi Mulia — Portfolio" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Wardana Dwi Mulia — Portfolio" />
+    <meta
+      name="twitter:description"
+      content="Informatics Engineering graduate · IT Support · Quality Assurance · Manual Testing · Data Management."
+    />
+    <meta
+      name="twitter:image"
+      content="https://natsumeaoii.github.io/og-image.svg"
+    />
+
+    <!-- Structured data: ProfilePage wrapping Person -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "ProfilePage",
+        "mainEntity": {
+          "@type": "Person",
+          "name": "Wardana Dwi Mulia",
+          "url": "https://natsumeaoii.github.io/",
+          "image": "https://natsumeaoii.github.io/og-image.svg",
+          "jobTitle": "Informatics Engineering Graduate",
+          "email": "mailto:wardana.dwi.mulia@gmail.com",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Depok",
+            "addressRegion": "West Java",
+            "addressCountry": "ID"
+          },
+          "alumniOf": {
+            "@type": "CollegeOrUniversity",
+            "name": "Universitas Indraprasta PGRI"
+          },
+          "knowsAbout": [
+            "Quality Assurance",
+            "Manual Testing",
+            "Data Management",
+            "IT Support",
+            "JavaScript",
+            "Node.js",
+            "Java",
+            "Pine Script",
+            "API Integration"
+          ],
+          "sameAs": [
+            "https://github.com/NatsumeAoii",
+            "https://www.linkedin.com/in/wardana-dwi-mulia-86aa52181/"
+          ]
+        }
+      }
+    </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <title>NatsumeAoii — Coming Soon</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap&subset=latin" rel="stylesheet" />
+    <script>
+      // Apply persisted/preferred theme & language before first paint to avoid flashes.
+      // Stamps data-initial-theme / data-initial-locale so React's getInitial*()
+      // reads the same values without duplicating detection logic.
+      (function () {
+        try {
+          var t = localStorage.getItem('portfolio-theme');
+          if (t !== 'light' && t !== 'dark') {
+            t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+          }
+          document.documentElement.setAttribute('data-theme', t);
+          document.documentElement.setAttribute('data-initial-theme', t);
+
+          var l = localStorage.getItem('portfolio-locale');
+          if (l !== 'en' && l !== 'id') {
+            l = (navigator.language || 'en').toLowerCase().indexOf('id') === 0 ? 'id' : 'en';
+          }
+          document.documentElement.setAttribute('lang', l);
+          document.documentElement.setAttribute('data-initial-locale', l);
+        } catch (e) {
+          document.documentElement.setAttribute('data-theme', 'dark');
+          document.documentElement.setAttribute('data-initial-theme', 'dark');
+          document.documentElement.setAttribute('lang', 'en');
+          document.documentElement.setAttribute('data-initial-locale', 'en');
+        }
+      })();
+    </script>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <noscript>
+        <div style="min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem;text-align:center;font-family:system-ui,sans-serif;background:#050208;color:#8b7fad;">
+          <h1 style="font-size:1.5rem;font-weight:700;color:#f5f1ff;margin-bottom:0.5rem;">Wardana Dwi Mulia</h1>
+          <p style="max-width:28rem;line-height:1.6;">This portfolio is a JavaScript application. Please enable JavaScript to view the full site, or <a href="Wardana-Dwi-Mulia-CV.pdf" download style="color:#a855f7;">download my resume</a> instead.</p>
+        </div>
+      </noscript>
+    </div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
