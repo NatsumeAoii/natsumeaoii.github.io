@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>404 — Page not found | Wardana Dwi Mulia</title>
+    <meta name="robots" content="noindex" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet" />
+    <script>
+      // SPA redirect for GitHub Pages: capture the path and redirect to the
+      // single-page app with the original URL preserved for the router.
+      (function (l) {
+        // Only redirect paths that look like real routes (not asset 404s).
+        var path = l.pathname;
+        // Skip if it looks like a file request (has extension).
+        if (/\.\w+$/.test(path)) return;
+
+        var redirect = path + l.search + l.hash;
+        l.replace(
+          l.protocol + '//' + l.host + '/?redirect=' + encodeURIComponent(redirect)
+        );
+      })(window.location);
+    </script>
+    <script>
+      (function () {
+        try {
+          var t = localStorage.getItem('portfolio-theme');
+          if (t !== 'light' && t !== 'dark') {
+            t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+          }
+          document.documentElement.setAttribute('data-theme', t);
+        } catch (e) {
+          document.documentElement.setAttribute('data-theme', 'dark');
+        }
+      })();
+    </script>
+    <style>
+      /* NOTE: These variables mirror src/index.css theme definitions. Keep in sync. */
+      :root, :root[data-theme="dark"] {
+        color-scheme: dark;
+        --void: #050208;
+        --heading: #f5f1ff;
+        --muted: #8b7fad;
+        --accent: #a855f7;
+        --scene-1: #050208;
+        --scene-2: #1a0533;
+        --scene-3: #0c1445;
+        --scene-4: #12082e;
+        --scene-glow: rgba(124, 58, 237, 0.15);
+      }
+      :root[data-theme="light"] {
+        color-scheme: light;
+        --void: #f5f3fc;
+        --heading: #1a1330;
+        --muted: #655d80;
+        --accent: #6d28d9;
+        --scene-1: #f5f3fc;
+        --scene-2: #ece4fb;
+        --scene-3: #e4ecfb;
+        --scene-4: #efe6fb;
+        --scene-glow: rgba(124, 58, 237, 0.10);
+      }
+      *, *::before, *::after { box-sizing: border-box; margin: 0; }
+      body {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: var(--void);
+        color: var(--muted);
+        font-family: "Inter", system-ui, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        position: relative;
+        overflow: hidden;
+      }
+      .bg {
+        position: fixed;
+        inset: 0;
+        z-index: -1;
+        background: linear-gradient(-45deg, var(--scene-1), var(--scene-2), var(--scene-3), var(--scene-4), var(--scene-1));
+        background-size: 400% 400%;
+        animation: gradient 12s ease infinite;
+      }
+      .glow {
+        position: fixed;
+        top: 0; left: 0; right: 0;
+        height: 50%;
+        z-index: -1;
+        background: radial-gradient(ellipse 70% 50% at 50% 0%, var(--scene-glow) 0%, transparent 70%);
+      }
+      @keyframes gradient {
+        0%, 100% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+      }
+      .code {
+        font-family: "Space Grotesk", system-ui, sans-serif;
+        font-size: 6rem;
+        font-weight: 700;
+        color: var(--heading);
+        line-height: 1;
+        background: linear-gradient(135deg, var(--accent), #c084fc);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      h1 {
+        font-family: "Space Grotesk", system-ui, sans-serif;
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--heading);
+        margin-top: 1rem;
+      }
+      p {
+        margin-top: 0.5rem;
+        font-size: 0.95rem;
+        max-width: 28rem;
+        text-align: center;
+        line-height: 1.6;
+      }
+      a {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-top: 2rem;
+        padding: 0.75rem 1.5rem;
+        border-radius: 9999px;
+        background: linear-gradient(to right, #7c3aed, #a855f7);
+        color: #fff;
+        font-size: 0.875rem;
+        font-weight: 600;
+        text-decoration: none;
+        box-shadow: 0 10px 15px -3px rgba(124, 58, 237, 0.25);
+        transition: box-shadow 0.2s, filter 0.2s;
+      }
+      a:hover {
+        box-shadow: 0 20px 25px -5px rgba(124, 58, 237, 0.4);
+        filter: brightness(1.1);
+      }
+      a:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 2px;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .bg { animation: none; }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Static fallback shown when JS redirect fails or JS is disabled -->
+    <noscript>
+      <div class="bg"></div>
+      <div class="glow"></div>
+      <div class="code">404</div>
+      <h1>Page not found</h1>
+      <p>The page you're looking for doesn't exist or has been moved.</p>
+      <a href="/">Back to portfolio</a>
+    </noscript>
+    <div class="bg"></div>
+    <div class="glow"></div>
+    <div class="code">404</div>
+    <h1>Page not found</h1>
+    <p>Redirecting...</p>
+    <a href="/">Back to portfolio</a>
+  </body>
+</html>

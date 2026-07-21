@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#050208"/>
+      <stop offset="50%" stop-color="#1a0533"/>
+      <stop offset="100%" stop-color="#0c1445"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#7c3aed"/>
+      <stop offset="100%" stop-color="#a855f7"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <circle cx="900" cy="100" r="300" fill="rgba(124,58,237,0.08)"/>
+  <circle cx="200" cy="500" r="250" fill="rgba(168,85,247,0.06)"/>
+  <text x="80" y="240" font-family="system-ui, sans-serif" font-size="64" font-weight="700" fill="#f5f1ff">Wardana Dwi Mulia</text>
+  <rect x="80" y="270" width="120" height="4" rx="2" fill="url(#accent)"/>
+  <text x="80" y="330" font-family="system-ui, sans-serif" font-size="28" font-weight="500" fill="#a855f7">IT Support · QA · Manual Testing</text>
+  <text x="80" y="380" font-family="system-ui, sans-serif" font-size="22" fill="#8b7fad">Data Management · Web Development</text>
+  <text x="80" y="520" font-family="system-ui, sans-serif" font-size="18" fill="#655d80">natsumeaoii.github.io</text>
+</svg>
