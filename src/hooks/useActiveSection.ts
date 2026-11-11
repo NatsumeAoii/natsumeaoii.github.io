@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
 
-const NAV_OFFSET = 100;
+const NAV_OFFSET = 24;
 
 /**
  * Tracks which section is currently closest to the top of the viewport
- * (with an offset for the fixed nav). Pure scroll-based — no
+ * (with an offset for the fixed nav). Pure scroll-based, no
  * IntersectionObserver timing issues.
  *
  * Returns the ID of the active section, or null when no section is
@@ -22,7 +22,7 @@ export function useActiveSection(sectionIds: string[]): string | null {
     // when the section list actually changes, not on every render.
     const key = sectionIds.join(',');
 
-    // Cache element references — section IDs are constant, so elements don't change.
+    // Cache element references: section IDs are constant, so elements don't change.
     const elementsRef = useRef<Map<string, HTMLElement>>(new Map());
 
     useEffect(() => {

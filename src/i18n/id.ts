@@ -3,14 +3,15 @@ import { REPOS, TAGS } from './types';
 
 export const id: Translation = {
     nav: {
-        about: 'Tentang',
+        about: 'Profil',
         experience: 'Pengalaman',
-        projects: 'Proyek',
-        skills: 'Keahlian',
+        projects: 'Karya',
+        skills: 'Kemampuan',
         contact: 'Kontak',
         resume: 'CV',
     },
     hero: {
+        kicker: 'Portofolio / 2026',
         roles: [
             'Lulusan Teknik Informatika',
             'IT Support',
@@ -21,25 +22,24 @@ export const id: Translation = {
         tagline:
             'Lulusan informatika yang teliti, memadukan QA manual, manajemen data, dan pengembangan berbantuan AI untuk menghasilkan workflow yang andal dan terdokumentasi.',
         location: 'Depok, Jawa Barat, Indonesia',
-        downloadResume: 'Unduh CV',
-        getInTouch: 'Hubungi saya',
-        scrollToAbout: 'Gulir ke bagian tentang',
+        status: 'Terbuka untuk tawaran',
     },
     about: {
-        eyebrow: 'Tentang saya',
-        title: 'Tentang',
+        title: 'Profil',
         summary:
             'Lulusan S1 Teknik Informatika dengan pengalaman di bidang administrative operations, data management, manual verification, manual testing, backtesting trading, warehouse fulfillment, dan production support. Terbiasa bekerja dengan spreadsheet, dokumentasi proses, pengecekan manual, dan workflow berbasis target.',
         detail:
             'Saya telah mengerjakan proyek menggunakan Java, JavaScript/Node.js, Google Apps Script, MySQL, dan Pine Script, serta API integration dan pengembangan berbantuan AI untuk debugging, refactoring, dan peningkatan workflow.',
         educationLabel: 'Pendidikan',
+        degreeLabel: 'Gelar',
+        gpaLabel: 'IPK',
+        periodLabel: 'Periode',
         school: 'Universitas Indraprasta PGRI',
         degree: 'Sarjana Teknik Informatika',
-        gpa: 'IPK 3,29 / 4,00',
+        gpa: '3,29 / 4,00',
         period: 'Agu 2019 – Agu 2023',
     },
     experience: {
-        eyebrow: 'Tempat saya bekerja',
         title: 'Pengalaman',
         showMore: 'Selengkapnya',
         showLess: 'Lebih sedikit',
@@ -91,8 +91,7 @@ export const id: Translation = {
         ],
     },
     projects: {
-        eyebrow: 'Yang pernah saya buat',
-        title: 'Proyek',
+        title: 'Karya pilihan',
         codeLabel: 'Kode',
         demoLabel: 'Demo langsung',
         loadMore: 'Muat lebih banyak',
@@ -226,8 +225,7 @@ export const id: Translation = {
         ],
     },
     skills: {
-        eyebrow: 'Yang saya gunakan',
-        title: 'Keahlian',
+        title: 'Kemampuan',
         groups: [
             {
                 label: 'Teknis',
@@ -302,7 +300,6 @@ export const id: Translation = {
         ],
     },
     contact: {
-        eyebrow: 'Mari berbincang',
         title: 'Hubungi saya',
         intro:
             'Terbuka untuk peran di bidang IT support, quality assurance, manual testing, dan manajemen data. Cara tercepat menghubungi saya adalah melalui email.',
@@ -319,13 +316,17 @@ export const id: Translation = {
         errorMaxLength: (max) => `Maksimal ${max} karakter.`,
         errorEmail: 'Masukkan alamat email yang valid.',
     },
+    footer: {
+        lastUpdated: 'Terakhir diperbarui',
+    },
     a11y: {
         toggleTheme: 'Ganti tema warna',
         switchToLight: 'Ganti ke tema terang',
         switchToDark: 'Ganti ke tema gelap',
         toggleLanguage: 'Ganti bahasa',
-        openMenu: 'Buka menu',
-        closeMenu: 'Tutup menu',
+        portfolioIndex: 'Indeks portofolio',
+        sections: 'Bagian',
+        skipToContent: 'Langsung ke konten',
         backToTop: 'Kembali ke atas',
     },
 };

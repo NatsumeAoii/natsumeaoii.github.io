@@ -12,13 +12,18 @@ function renderProjects() {
     );
 }
 
+function openFilters() {
+    fireEvent.click(screen.getByRole('button', { name: /filter by tag|filter berdasarkan tag/i }));
+}
+
 beforeEach(() => {
     history.replaceState(null, '', window.location.pathname);
 });
 
 describe('project filtering', () => {
-    it('renders filter chips for each unique tag', () => {
+    it('renders filter chips for each unique tag after opening the disclosure', () => {
         renderProjects();
+        openFilters();
         expect(screen.getByRole('button', { name: 'TypeScript' })).toBeInTheDocument();
         expect(screen.getByRole('button', { name: 'Lua' })).toBeInTheDocument();
         expect(screen.getByRole('button', { name: 'Java' })).toBeInTheDocument();
@@ -26,6 +31,7 @@ describe('project filtering', () => {
 
     it('filters projects when a tag chip is clicked', async () => {
         renderProjects();
+        openFilters();
         fireEvent.click(screen.getByRole('button', { name: 'Lua' }));
 
         await waitFor(() => {
@@ -36,6 +42,7 @@ describe('project filtering', () => {
 
     it('shows clear filters button and count when filter active', async () => {
         renderProjects();
+        openFilters();
         fireEvent.click(screen.getByRole('button', { name: 'Lua' }));
 
         await waitFor(() => {
@@ -46,6 +53,7 @@ describe('project filtering', () => {
 
     it('clears all filters when clear button is clicked', async () => {
         renderProjects();
+        openFilters();
         fireEvent.click(screen.getByRole('button', { name: 'TypeScript' }));
 
         await waitFor(() => {
@@ -60,20 +68,49 @@ describe('project filtering', () => {
     });
 });
 
+describe('hover preview', () => {
+    it('attaches a decorative preview with the real screenshot to rows that have one', () => {
+        const { container } = renderProjects();
+        const firstEntry = container.querySelector('.work-entry');
+        const preview = firstEntry?.querySelector('.work-preview');
+
+        expect(preview).toHaveAttribute('aria-hidden', 'true');
+        expect(preview).toHaveTextContent('Aetheris CharGen');
+        expect(preview?.querySelector('img')).toHaveAttribute('src', '/projects/aetheris.png');
+        expect(preview?.querySelector('img')).toHaveAttribute('alt', '');
+    });
+
+    it('leaves projects without a screenshot unpreviewed', async () => {
+        const { container } = renderProjects();
+        fireEvent.click(screen.getByRole('button', { name: /load more|muat lebih/i }));
+        fireEvent.click(screen.getByRole('button', { name: /load more|muat lebih/i }));
+
+        await waitFor(() => {
+            expect(container.querySelectorAll('.work-entry')).toHaveLength(11);
+        });
+
+        const sawEntry = [...container.querySelectorAll('.work-entry')].find((entry) =>
+            entry.textContent?.includes('Decision Support System'),
+        );
+        expect(sawEntry).toBeDefined();
+        expect(sawEntry?.querySelector('.work-preview')).toBeNull();
+    });
+});
+
 describe('pagination', () => {
     it('shows load more button when there are more projects', () => {
         renderProjects();
         expect(screen.getByRole('button', { name: /load more|muat lebih/i })).toBeInTheDocument();
     });
 
-    it('shows more cards after clicking load more', async () => {
+    it('shows more rows after clicking load more', async () => {
         renderProjects();
         const loadMoreBtn = screen.getByRole('button', { name: /load more|muat lebih/i });
         fireEvent.click(loadMoreBtn);
 
         await waitFor(() => {
-            const articles = document.querySelectorAll('article');
-            expect(articles.length).toBeGreaterThan(4);
+            const rows = document.querySelectorAll('.work-entry');
+            expect(rows.length).toBeGreaterThan(4);
         });
     });
 
@@ -101,16 +138,16 @@ describe('pagination', () => {
         fireEvent.click(loadMoreBtn);
 
         await waitFor(() => {
-            const articles = document.querySelectorAll('article');
-            expect(articles.length).toBe(8);
+            const rows = document.querySelectorAll('.work-entry');
+            expect(rows.length).toBe(8);
         });
 
         const idBtn = screen.getAllByRole('button', { name: 'ID' })[0];
         fireEvent.click(idBtn);
 
         await waitFor(() => {
-            const articles = document.querySelectorAll('article');
-            expect(articles.length).toBe(8);
+            const rows = document.querySelectorAll('.work-entry');
+            expect(rows.length).toBe(8);
         });
     });
 });

@@ -25,14 +25,12 @@ function detectLocale(): 'en' | 'id' {
     if (typeof document !== 'undefined') {
         // Prefer the live lang attribute (kept in sync by SettingsProvider).
         const live = document.documentElement.lang;
-        if (live === 'id') return 'id';
-        // Fallback to FOUC attribute.
+        if (live === 'en' || live === 'id') return live;
+        // Fallback to the value stamped before first paint.
         const attr = document.documentElement.getAttribute('data-initial-locale');
-        if (attr === 'id') return 'id';
-        const lang = navigator.language?.toLowerCase() ?? '';
-        if (lang.startsWith('id')) return 'id';
+        if (attr === 'en' || attr === 'id') return attr;
     }
-    return 'en';
+    return 'id';
 }
 
 /**
@@ -69,7 +67,7 @@ export class ErrorBoundary extends Component<Props, State> {
                     <button
                         type="button"
                         onClick={this.handleReload}
-                        className="mt-2 rounded-full bg-gradient-to-r from-accent-start to-accent-mid px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-accent-start/25 transition-all hover:shadow-xl hover:shadow-accent-start/40 hover:brightness-110"
+                        className="mt-2 border-2 border-heading bg-heading px-6 py-3 font-mono text-xs uppercase tracking-wider text-void transition-colors hover:bg-accent-mid hover:border-accent-mid"
                     >
                         {text.reload}
                     </button>

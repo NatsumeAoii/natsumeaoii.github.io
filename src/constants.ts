@@ -6,4 +6,4 @@
  */
 
 /** Section element IDs rendered on the portfolio page (in DOM order). */
-export const SECTION_IDS: string[] = ['about', 'experience', 'projects', 'skills', 'contact'];
+export const SECTION_IDS: string[] = ['about', 'projects', 'experience', 'skills', 'contact'];

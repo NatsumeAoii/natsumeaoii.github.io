@@ -3,14 +3,15 @@ import { REPOS, TAGS } from './types';
 
 export const en: Translation = {
     nav: {
-        about: 'About',
+        about: 'Profile',
         experience: 'Experience',
-        projects: 'Projects',
-        skills: 'Skills',
+        projects: 'Work',
+        skills: 'Capabilities',
         contact: 'Contact',
-        resume: 'Resume',
+        resume: 'Résumé',
     },
     hero: {
+        kicker: 'Portfolio / 2026',
         roles: [
             'Informatics Engineering Graduate',
             'IT Support',
@@ -21,25 +22,24 @@ export const en: Translation = {
         tagline:
             'Detail-driven informatics graduate blending manual QA, data management, and AI-assisted development to ship reliable, well-documented workflows.',
         location: 'Depok, West Java, Indonesia',
-        downloadResume: 'Download Resume',
-        getInTouch: 'Get in touch',
-        scrollToAbout: 'Scroll to about section',
+        status: 'Open to offers',
     },
     about: {
-        eyebrow: 'Who I am',
-        title: 'About',
+        title: 'Profile',
         summary:
             'Informatics Engineering graduate with hands-on experience across administrative operations, data management, manual verification, manual testing, trading backtesting, warehouse fulfillment, and production support. Comfortable working with spreadsheets, process documentation, manual checking, and target-based workflows.',
         detail:
             'I have delivered projects using Java, JavaScript/Node.js, Google Apps Script, MySQL, and Pine Script, alongside API integration and AI-assisted development for debugging, refactoring, and workflow improvement.',
         educationLabel: 'Education',
+        degreeLabel: 'Degree',
+        gpaLabel: 'GPA',
+        periodLabel: 'Period',
         school: 'Universitas Indraprasta PGRI',
         degree: 'Bachelor of Informatics Engineering',
-        gpa: 'GPA 3.29 / 4.00',
+        gpa: '3.29 / 4.00',
         period: 'Aug 2019 – Aug 2023',
     },
     experience: {
-        eyebrow: "Where I've worked",
         title: 'Experience',
         showMore: 'Show more',
         showLess: 'Show less',
@@ -91,8 +91,7 @@ export const en: Translation = {
         ],
     },
     projects: {
-        eyebrow: "What I've built",
-        title: 'Projects',
+        title: 'Selected work',
         codeLabel: 'Code',
         demoLabel: 'Live demo',
         loadMore: 'Load more',
@@ -226,8 +225,7 @@ export const en: Translation = {
         ],
     },
     skills: {
-        eyebrow: 'What I work with',
-        title: 'Skills',
+        title: 'Capabilities',
         groups: [
             {
                 label: 'Technical',
@@ -302,8 +300,7 @@ export const en: Translation = {
         ],
     },
     contact: {
-        eyebrow: "Let's talk",
-        title: 'Get in touch',
+        title: 'Contact',
         intro:
             'Open to roles in IT support, quality assurance, manual testing, and data management. The fastest way to reach me is email.',
         emailLabel: 'Email',
@@ -319,13 +316,17 @@ export const en: Translation = {
         errorMaxLength: (max) => `Must be at most ${max} characters.`,
         errorEmail: 'Please enter a valid email address.',
     },
+    footer: {
+        lastUpdated: 'Last updated',
+    },
     a11y: {
         toggleTheme: 'Toggle color theme',
         switchToLight: 'Switch to light theme',
         switchToDark: 'Switch to dark theme',
         toggleLanguage: 'Switch language',
-        openMenu: 'Open menu',
-        closeMenu: 'Close menu',
+        portfolioIndex: 'Portfolio index',
+        sections: 'Sections',
+        skipToContent: 'Skip to content',
         backToTop: 'Back to top',
     },
 };

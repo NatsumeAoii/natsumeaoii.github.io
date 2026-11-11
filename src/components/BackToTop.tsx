@@ -28,7 +28,7 @@ export function BackToTop() {
             type="button"
             onClick={handleClick}
             aria-label={t.a11y.backToTop}
-            className="fixed bottom-6 right-6 z-40 flex h-11 w-11 items-center justify-center rounded-full border border-line bg-card/80 text-muted shadow-lg backdrop-blur-sm transition-all hover:border-accent-glow/30 hover:bg-elevate-hover hover:text-accent-end"
+            className="back-to-top"
         >
             <ArrowUpIcon size={18} />
         </button>

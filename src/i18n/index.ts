@@ -1,5 +1,5 @@
 /**
- * i18n barrel — re-exports everything so consumers can import from
+ * i18n barrel: re-exports everything so consumers can import from
  * `'../i18n/translations'` without changing any component code.
  */
 

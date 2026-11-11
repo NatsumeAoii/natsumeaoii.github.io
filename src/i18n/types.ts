@@ -54,33 +54,32 @@ export interface Translation {
         resume: string;
     };
     hero: {
+        kicker: string;
         roles: string[];
         tagline: string;
         location: string;
-        downloadResume: string;
-        getInTouch: string;
-        scrollToAbout: string;
+        status: string;
     };
     about: {
-        eyebrow: string;
         title: string;
         summary: string;
         detail: string;
         educationLabel: string;
+        degreeLabel: string;
+        gpaLabel: string;
+        periodLabel: string;
         school: string;
         degree: string;
         gpa: string;
         period: string;
     };
     experience: {
-        eyebrow: string;
         title: string;
         items: ExperienceItem[];
         showMore: string;
         showLess: string;
     };
     projects: {
-        eyebrow: string;
         title: string;
         codeLabel: string;
         demoLabel: string;
@@ -93,7 +92,6 @@ export interface Translation {
         showingCount: (shown: number, total: number) => string;
     };
     skills: {
-        eyebrow: string;
         title: string;
         groups: SkillGroup[];
         certificationsLabel: string;
@@ -102,7 +100,6 @@ export interface Translation {
         languages: { name: string; level: string }[];
     };
     contact: {
-        eyebrow: string;
         title: string;
         intro: string;
         emailLabel: string;
@@ -118,13 +115,17 @@ export interface Translation {
         errorMaxLength: (max: number) => string;
         errorEmail: string;
     };
+    footer: {
+        lastUpdated: string;
+    };
     a11y: {
         toggleTheme: string;
         switchToLight: string;
         switchToDark: string;
         toggleLanguage: string;
-        openMenu: string;
-        closeMenu: string;
+        portfolioIndex: string;
+        sections: string;
+        skipToContent: string;
         backToTop: string;
     };
 }
@@ -168,7 +169,7 @@ export const REPOS = {
 /** Profile data that is identical in every language. */
 export const shared = {
     name: 'Wardana Dwi Mulia',
-    resumeUrl: 'Wardana-Dwi-Mulia-CV.pdf',
+    resumeUrl: '/Wardana-Dwi-Mulia-CV.pdf',
     links: {
         github: 'https://github.com/NatsumeAoii',
         linkedin: 'https://www.linkedin.com/in/wardana-dwi-mulia-86aa52181/',

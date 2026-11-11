@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>404 — Page not found | Wardana Dwi Mulia</title>
+    <title>404 | Page not found | Wardana Dwi Mulia</title>
     <meta name="robots" content="noindex" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -26,14 +26,13 @@
     </script>
     <script>
       (function () {
+        var root = document.documentElement;
         try {
           var t = localStorage.getItem('portfolio-theme');
-          if (t !== 'light' && t !== 'dark') {
-            t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-          }
-          document.documentElement.setAttribute('data-theme', t);
+          if (t !== 'light' && t !== 'dark') t = 'light';
+          root.setAttribute('data-theme', t);
         } catch (e) {
-          document.documentElement.setAttribute('data-theme', 'dark');
+          root.setAttribute('data-theme', 'light');
         }
       })();
     </script>

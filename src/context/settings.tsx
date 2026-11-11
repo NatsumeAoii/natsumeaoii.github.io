@@ -36,14 +36,14 @@ const SettingsContext: Context<SettingsValue | null> =
  * pre-paint initialization without duplicating the detection logic.
  *
  * If the attribute is missing (SSR, test harness, or very old cached HTML),
- * fall back to a safe default.
+ * fall back to the first-visit defaults: light theme, Indonesian.
  */
 function getInitialTheme(): Theme {
     if (typeof document !== 'undefined') {
         const attr = document.documentElement.getAttribute('data-initial-theme');
         if (attr === 'light' || attr === 'dark') return attr;
     }
-    return 'dark';
+    return 'light';
 }
 
 function getInitialLocale(): Locale {
@@ -51,7 +51,7 @@ function getInitialLocale(): Locale {
         const attr = document.documentElement.getAttribute('data-initial-locale');
         if (attr === 'en' || attr === 'id') return attr;
     }
-    return 'en';
+    return 'id';
 }
 
 export function SettingsProvider({ children }: { children: ReactNode }) {

@@ -4,10 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Wardana Dwi Mulia — Portfolio</title>
+    <title>Wardana Dwi Mulia | Portfolio</title>
     <meta
       name="description"
-      content="Portfolio of Wardana Dwi Mulia, an Informatics Engineering graduate working in IT support, quality assurance, manual testing, and data management. View projects, experience, and skills."
+      content="Portfolio of Wardana Dwi Mulia, an Informatics Engineering graduate working in IT support, quality assurance, manual testing, and data management. View selected work, experience, and capabilities."
     />
     <meta
       name="keywords"
@@ -15,8 +15,8 @@
     />
     <meta name="author" content="Wardana Dwi Mulia" />
     <meta name="robots" content="index, follow" />
-    <meta name="theme-color" content="#f5f3fc" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#0f0a1e" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#f3f5f8" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#15181c" media="(prefers-color-scheme: dark)" />
     <link rel="canonical" href="https://natsumeaoii.github.io/" />
     <link rel="alternate" hreflang="en" href="https://natsumeaoii.github.io/" />
     <link rel="alternate" hreflang="id" href="https://natsumeaoii.github.io/" />
@@ -30,7 +30,7 @@
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Wardana Dwi Mulia" />
-    <meta property="og:title" content="Wardana Dwi Mulia — Portfolio" />
+    <meta property="og:title" content="Wardana Dwi Mulia | Portfolio" />
     <meta
       property="og:description"
       content="Informatics Engineering graduate · IT Support · Quality Assurance · Manual Testing · Data Management."
@@ -44,11 +44,11 @@
     />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Wardana Dwi Mulia — Portfolio" />
+    <meta property="og:image:alt" content="Wardana Dwi Mulia | Portfolio" />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Wardana Dwi Mulia — Portfolio" />
+    <meta name="twitter:title" content="Wardana Dwi Mulia | Portfolio" />
     <meta
       name="twitter:description"
       content="Informatics Engineering graduate · IT Support · Quality Assurance · Manual Testing · Data Management."
@@ -101,31 +101,28 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap&subset=latin" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..700&display=swap" rel="stylesheet" />
     <script>
-      // Apply persisted/preferred theme & language before first paint to avoid flashes.
+      // First visits start light and Indonesian. Stored choices win.
       // Stamps data-initial-theme / data-initial-locale so React's getInitial*()
-      // reads the same values without duplicating detection logic.
+      // reads the same values without duplicating the default logic.
       (function () {
+        var root = document.documentElement;
         try {
           var t = localStorage.getItem('portfolio-theme');
-          if (t !== 'light' && t !== 'dark') {
-            t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-          }
-          document.documentElement.setAttribute('data-theme', t);
-          document.documentElement.setAttribute('data-initial-theme', t);
+          if (t !== 'light' && t !== 'dark') t = 'light';
+          root.setAttribute('data-theme', t);
+          root.setAttribute('data-initial-theme', t);
 
           var l = localStorage.getItem('portfolio-locale');
-          if (l !== 'en' && l !== 'id') {
-            l = (navigator.language || 'en').toLowerCase().indexOf('id') === 0 ? 'id' : 'en';
-          }
-          document.documentElement.setAttribute('lang', l);
-          document.documentElement.setAttribute('data-initial-locale', l);
+          if (l !== 'en' && l !== 'id') l = 'id';
+          root.setAttribute('lang', l);
+          root.setAttribute('data-initial-locale', l);
         } catch (e) {
-          document.documentElement.setAttribute('data-theme', 'dark');
-          document.documentElement.setAttribute('data-initial-theme', 'dark');
-          document.documentElement.setAttribute('lang', 'en');
-          document.documentElement.setAttribute('data-initial-locale', 'en');
+          root.setAttribute('data-theme', 'light');
+          root.setAttribute('data-initial-theme', 'light');
+          root.setAttribute('lang', 'id');
+          root.setAttribute('data-initial-locale', 'id');
         }
       })();
     </script>
@@ -133,9 +130,9 @@
   <body>
     <div id="root">
       <noscript>
-        <div style="min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem;text-align:center;font-family:system-ui,sans-serif;background:#050208;color:#8b7fad;">
-          <h1 style="font-size:1.5rem;font-weight:700;color:#f5f1ff;margin-bottom:0.5rem;">Wardana Dwi Mulia</h1>
-          <p style="max-width:28rem;line-height:1.6;">This portfolio is a JavaScript application. Please enable JavaScript to view the full site, or <a href="Wardana-Dwi-Mulia-CV.pdf" download style="color:#a855f7;">download my resume</a> instead.</p>
+        <div style="min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem;text-align:center;font-family:Georgia,'Times New Roman',serif;background:#f3f5f8;color:#4f5a6b;">
+          <h1 style="font-size:1.75rem;font-weight:600;color:#101828;margin-bottom:0.5rem;">Wardana Dwi Mulia</h1>
+          <p style="max-width:28rem;line-height:1.6;">This portfolio is a JavaScript application. Please enable JavaScript to view the full site, or <a href="/Wardana-Dwi-Mulia-CV.pdf" download style="color:#2447c9;">download my resume</a> instead.</p>
         </div>
       </noscript>
     </div>

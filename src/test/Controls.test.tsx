@@ -49,3 +49,19 @@ describe('language switch', () => {
         expect(document.documentElement.getAttribute('lang')).toBe('en');
     });
 });
+
+describe('first visit defaults', () => {
+    it('starts in light theme and Indonesian when nothing was stamped', () => {
+        document.documentElement.removeAttribute('data-initial-theme');
+        document.documentElement.removeAttribute('data-initial-locale');
+
+        renderControls();
+
+        expect(document.documentElement.getAttribute('data-theme')).toBe('light');
+        expect(document.documentElement.getAttribute('lang')).toBe('id');
+        expect(screen.getAllByRole('button', { name: 'ID' })[0]).toHaveAttribute(
+            'aria-pressed',
+            'true',
+        );
+    });
+});

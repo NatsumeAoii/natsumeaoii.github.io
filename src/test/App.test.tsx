@@ -1,6 +1,6 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
-import { describe, expect, it, vi } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import App from '../App';
 import { Hero } from '../components/Hero';
 import { useActiveSection } from '../hooks/useActiveSection';
@@ -23,19 +23,20 @@ describe('portfolio smoke tests', () => {
 
     it('renders all main sections on the home route', () => {
         renderApp();
-        expect(screen.getByRole('heading', { name: /about/i })).toBeInTheDocument();
-        expect(screen.getByRole('heading', { name: /experience/i })).toBeInTheDocument();
-        expect(screen.getByRole('heading', { name: /projects/i })).toBeInTheDocument();
-        expect(screen.getByRole('heading', { name: /skills/i })).toBeInTheDocument();
+        expect(screen.getByRole('heading', { name: /^profile$/i })).toBeInTheDocument();
+        expect(screen.getByRole('heading', { name: /^selected work$/i })).toBeInTheDocument();
+        expect(screen.getByRole('heading', { name: /^experience$/i })).toBeInTheDocument();
+        expect(screen.getByRole('heading', { name: /^capabilities$/i })).toBeInTheDocument();
+        expect(screen.getByRole('heading', { name: /^contact$/i })).toBeInTheDocument();
     });
 
-    it('renders navigation links (desktop + mobile)', () => {
+    it('renders the index rail with section links', () => {
         renderApp();
-        expect(screen.getAllByRole('link', { name: /about/i }).length).toBeGreaterThanOrEqual(2);
-        expect(screen.getAllByRole('link', { name: /experience/i }).length).toBeGreaterThanOrEqual(2);
-        expect(screen.getAllByRole('link', { name: /projects/i }).length).toBeGreaterThanOrEqual(2);
-        expect(screen.getAllByRole('link', { name: /skills/i }).length).toBeGreaterThanOrEqual(2);
-        expect(screen.getAllByRole('link', { name: /contact/i }).length).toBeGreaterThanOrEqual(2);
+        expect(screen.getByRole('link', { name: /profile/i })).toBeInTheDocument();
+        expect(screen.getByRole('link', { name: /work/i })).toBeInTheDocument();
+        expect(screen.getByRole('link', { name: /experience/i })).toBeInTheDocument();
+        expect(screen.getByRole('link', { name: /capabilities/i })).toBeInTheDocument();
+        expect(screen.getByRole('link', { name: /contact/i })).toBeInTheDocument();
     });
 
     it('renders the skip-to-content link', () => {
@@ -43,7 +44,7 @@ describe('portfolio smoke tests', () => {
         expect(screen.getByRole('link', { name: /skip to content/i })).toBeInTheDocument();
     });
 
-    it('renders social links in hero and footer', () => {
+    it('renders social links in the rail and footer', () => {
         renderApp();
         expect(screen.getAllByRole('link', { name: 'GitHub' }).length).toBeGreaterThanOrEqual(2);
         expect(screen.getAllByRole('link', { name: 'LinkedIn' }).length).toBeGreaterThanOrEqual(2);
@@ -51,61 +52,15 @@ describe('portfolio smoke tests', () => {
     });
 });
 
-describe('mobile menu', () => {
-    it('toggles menu on hamburger click', () => {
-        renderApp();
-        const toggle = screen.getByRole('button', { name: /open menu|buka menu/i });
-        fireEvent.click(toggle);
-        expect(screen.getByRole('button', { name: /close menu|tutup menu/i })).toBeInTheDocument();
-    });
-
-    it('closes menu on Escape key', () => {
-        renderApp();
-        const toggle = screen.getByRole('button', { name: /open menu|buka menu/i });
-        fireEvent.click(toggle);
-        expect(screen.getByRole('button', { name: /close menu|tutup menu/i })).toBeInTheDocument();
-        fireEvent.keyDown(document, { key: 'Escape' });
-        expect(screen.getByRole('button', { name: /open menu|buka menu/i })).toBeInTheDocument();
-    });
-
-    it('focuses first link when menu opens', () => {
-        renderApp();
-        const toggle = screen.getByRole('button', { name: /open menu|buka menu/i });
-        fireEvent.click(toggle);
-        const menu = document.getElementById('mobile-menu')!;
-        const firstFocusable = menu.querySelector<HTMLElement>('a[href], button:not([disabled])');
-        expect(document.activeElement).toBe(firstFocusable);
-    });
-});
-
-describe('role carousel', () => {
-    it('renders first role on mount', () => {
+describe('masthead', () => {
+    it('renders the roles as static metadata', () => {
         render(
             <SettingsProvider>
                 <Hero />
             </SettingsProvider>,
         );
-        expect(screen.getByText(/informatics engineering graduate|lulusan teknik informatika/i)).toBeInTheDocument();
-    });
-
-    it('pauses on mouse enter and resumes on mouse leave', () => {
-        vi.useFakeTimers();
-        render(
-            <SettingsProvider>
-                <Hero />
-            </SettingsProvider>,
-        );
-
-        const carousel = screen.getByText(/informatics engineering graduate|lulusan teknik informatika/i).closest('[aria-live]')!;
-        fireEvent.mouseEnter(carousel);
-        const before = screen.getAllByRole('generic', { hidden: true }).map((e) => e.textContent);
-        vi.advanceTimersByTime(5000);
-        const after = screen.getAllByRole('generic', { hidden: true }).map((e) => e.textContent);
-        expect(after).toEqual(before);
-
-        fireEvent.mouseLeave(carousel);
-        vi.advanceTimersByTime(3000);
-        vi.useRealTimers();
+        expect(screen.getByText(/informatics engineering graduate/i)).toBeInTheDocument();
+        expect(screen.getByText(/quality assurance/i)).toBeInTheDocument();
     });
 });
 
