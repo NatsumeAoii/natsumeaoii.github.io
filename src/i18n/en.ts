@@ -20,16 +20,16 @@ export const en: Translation = {
             'Data Management',
         ],
         tagline:
-            'Detail-driven informatics graduate blending manual QA, data management, and AI-assisted development to ship reliable, well-documented workflows.',
+            "Detail-oriented informatics graduate who's still learning. Comfortable with manual testing, data management, and AI-assisted development, and enjoys building tidy, well-documented workflows.",
         location: 'Depok, West Java, Indonesia',
         status: 'Open to offers',
     },
     about: {
         title: 'Profile',
         summary:
-            'Informatics Engineering graduate with hands-on experience across administrative operations, data management, manual verification, manual testing, trading backtesting, warehouse fulfillment, and production support. Comfortable working with spreadsheets, process documentation, manual checking, and target-based workflows.',
+            'Informatics Engineering graduate who has worked in administrative operations, data management, manual verification and testing, trading backtesting, warehouse fulfillment, and production support. Comfortable with spreadsheets, process documentation, manual checking, and target-based work.',
         detail:
-            'I have delivered projects using Java, JavaScript/Node.js, Google Apps Script, MySQL, and Pine Script, alongside API integration and AI-assisted development for debugging, refactoring, and workflow improvement.',
+            "I've worked on projects using Java, JavaScript/Node.js, Google Apps Script, MySQL, and Pine Script. I've also done API integration and used AI for debugging, refactoring, and workflow improvement.",
         educationLabel: 'Education',
         degreeLabel: 'Degree',
         gpaLabel: 'GPA',
