@@ -1,22 +1,21 @@
 <!doctype html>
-<html lang="en">
+<html lang="id">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Wardana Dwi Mulia | Portfolio</title>
+    <title>Wardana Dwi Mulia | Portofolio</title>
     <meta
       name="description"
-      content="Portfolio of Wardana Dwi Mulia, an Informatics Engineering graduate working in IT support, quality assurance, manual testing, and data management. View selected work, experience, and capabilities."
+      content="Portofolio Wardana Dwi Mulia, lulusan Teknik Informatika yang bekerja di bidang IT support, quality assurance, pengujian manual, dan manajemen data. Lihat karya pilihan, pengalaman, dan kemampuannya."
     />
     <meta
       name="keywords"
-      content="Wardana Dwi Mulia, portfolio, Informatics Engineering, IT Support, Quality Assurance, Manual Testing, Data Management, QA, web developer, Indonesia, NatsumeAoii"
+      content="Wardana Dwi Mulia, portofolio, Teknik Informatika, IT Support, Quality Assurance, Pengujian Manual, Manajemen Data, QA, web developer, Indonesia, NatsumeAoii"
     />
     <meta name="author" content="Wardana Dwi Mulia" />
     <meta name="robots" content="index, follow" />
-    <meta name="theme-color" content="#f3f5f8" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#15181c" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#f3f5f8" />
     <link rel="canonical" href="https://natsumeaoii.github.io/" />
     <link rel="alternate" hreflang="en" href="https://natsumeaoii.github.io/" />
     <link rel="alternate" hreflang="id" href="https://natsumeaoii.github.io/" />
@@ -30,28 +29,28 @@
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Wardana Dwi Mulia" />
-    <meta property="og:title" content="Wardana Dwi Mulia | Portfolio" />
+    <meta property="og:title" content="Wardana Dwi Mulia | Portofolio" />
     <meta
       property="og:description"
-      content="Informatics Engineering graduate · IT Support · Quality Assurance · Manual Testing · Data Management."
+      content="Lulusan Teknik Informatika · IT Support · Quality Assurance · Pengujian Manual · Manajemen Data."
     />
     <meta property="og:url" content="https://natsumeaoii.github.io/" />
-    <meta property="og:locale" content="en_US" />
-    <meta property="og:locale:alternate" content="id_ID" />
+    <meta property="og:locale" content="id_ID" />
+    <meta property="og:locale:alternate" content="en_US" />
     <meta
       property="og:image"
       content="https://natsumeaoii.github.io/og-image.svg"
     />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Wardana Dwi Mulia | Portfolio" />
+    <meta property="og:image:alt" content="Wardana Dwi Mulia | Portofolio" />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Wardana Dwi Mulia | Portfolio" />
+    <meta name="twitter:title" content="Wardana Dwi Mulia | Portofolio" />
     <meta
       name="twitter:description"
-      content="Informatics Engineering graduate · IT Support · Quality Assurance · Manual Testing · Data Management."
+      content="Lulusan Teknik Informatika · IT Support · Quality Assurance · Pengujian Manual · Manajemen Data."
     />
     <meta
       name="twitter:image"
@@ -68,12 +67,12 @@
           "name": "Wardana Dwi Mulia",
           "url": "https://natsumeaoii.github.io/",
           "image": "https://natsumeaoii.github.io/og-image.svg",
-          "jobTitle": "Informatics Engineering Graduate",
+          "jobTitle": "Lulusan Teknik Informatika",
           "email": "mailto:wardana.dwi.mulia@gmail.com",
           "address": {
             "@type": "PostalAddress",
             "addressLocality": "Depok",
-            "addressRegion": "West Java",
+            "addressRegion": "Jawa Barat",
             "addressCountry": "ID"
           },
           "alumniOf": {
@@ -82,14 +81,14 @@
           },
           "knowsAbout": [
             "Quality Assurance",
-            "Manual Testing",
-            "Data Management",
+            "Pengujian Manual",
+            "Manajemen Data",
             "IT Support",
             "JavaScript",
             "Node.js",
             "Java",
             "Pine Script",
-            "API Integration"
+            "Integrasi API"
           ],
           "sameAs": [
             "https://github.com/NatsumeAoii",
@@ -113,6 +112,10 @@
           if (t !== 'light' && t !== 'dark') t = 'light';
           root.setAttribute('data-theme', t);
           root.setAttribute('data-initial-theme', t);
+          var themeColor = document.querySelector('meta[name="theme-color"]');
+          if (themeColor) {
+            themeColor.setAttribute('content', t === 'dark' ? '#15181c' : '#f3f5f8');
+          }
 
           var l = localStorage.getItem('portfolio-locale');
           if (l !== 'en' && l !== 'id') l = 'id';
@@ -132,7 +135,7 @@
       <noscript>
         <div style="min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem;text-align:center;font-family:Georgia,'Times New Roman',serif;background:#f3f5f8;color:#4f5a6b;">
           <h1 style="font-size:1.75rem;font-weight:600;color:#101828;margin-bottom:0.5rem;">Wardana Dwi Mulia</h1>
-          <p style="max-width:28rem;line-height:1.6;">This portfolio is a JavaScript application. Please enable JavaScript to view the full site, or <a href="/Wardana-Dwi-Mulia-CV.pdf" download style="color:#2447c9;">download my resume</a> instead.</p>
+          <p style="max-width:28rem;line-height:1.6;">Portofolio ini adalah aplikasi JavaScript. Aktifkan JavaScript untuk melihat situs lengkap, atau <a href="/Wardana-Dwi-Mulia-CV.pdf" download style="color:#2447c9;">unduh CV saya</a> sebagai gantinya.</p>
         </div>
       </noscript>
     </div>

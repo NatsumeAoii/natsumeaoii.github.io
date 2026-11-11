@@ -1,12 +1,13 @@
 {
-  "name": "Wardana Dwi Mulia | Portfolio",
-  "short_name": "WD Portfolio",
-  "description": "Portfolio of Wardana Dwi Mulia: Informatics Engineering graduate, IT Support, Quality Assurance, Manual Testing, and Data Management.",
+  "name": "Wardana Dwi Mulia | Portofolio",
+  "short_name": "WD Portofolio",
+  "description": "Portofolio Wardana Dwi Mulia: lulusan Teknik Informatika, IT Support, Quality Assurance, Pengujian Manual, dan Manajemen Data.",
+  "lang": "id",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
-  "background_color": "#f5f3fc",
-  "theme_color": "#7c3aed",
+  "background_color": "#f3f5f8",
+  "theme_color": "#2447c9",
   "icons": [
     {
       "src": "/favicon.svg",

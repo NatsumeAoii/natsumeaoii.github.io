@@ -14,6 +14,10 @@ type Theme = 'light' | 'dark';
 
 const THEME_KEY = 'portfolio-theme';
 const LOCALE_KEY = 'portfolio-locale';
+const THEME_COLORS: Record<Theme, string> = {
+    light: '#f3f5f8',
+    dark: '#15181c',
+};
 
 interface SettingsValue {
     theme: Theme;
@@ -60,6 +64,9 @@ export function SettingsProvider({ children }: { children: ReactNode }) {
 
     useEffect(() => {
         document.documentElement.setAttribute('data-theme', theme);
+        document
+            .querySelector('meta[name="theme-color"]')
+            ?.setAttribute('content', THEME_COLORS[theme]);
         try {
             window.localStorage.setItem(THEME_KEY, theme);
         } catch {

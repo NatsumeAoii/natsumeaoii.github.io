@@ -21,6 +21,15 @@ describe('portfolio smoke tests', () => {
         expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('Wardana Dwi Mulia');
     });
 
+    it('renders Indonesian copy on a first visit with no stored locale', () => {
+        document.documentElement.removeAttribute('data-initial-locale');
+
+        renderApp();
+
+        expect(document.documentElement.lang).toBe('id');
+        expect(screen.getByRole('heading', { name: /^profil$/i })).toBeInTheDocument();
+    });
+
     it('renders all main sections on the home route', () => {
         renderApp();
         expect(screen.getByRole('heading', { name: /^profile$/i })).toBeInTheDocument();

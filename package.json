@@ -2,7 +2,7 @@
   "name": "natsumeaoii-portfolio",
   "private": true,
   "version": "0.1.0",
-  "description": "Personal portfolio site for Wardana Dwi Mulia — React + TypeScript + Tailwind CSS",
+  "description": "Personal portfolio site for Wardana Dwi Mulia | React + TypeScript + Tailwind CSS",
   "type": "module",
   "license": "MIT",
   "engines": {

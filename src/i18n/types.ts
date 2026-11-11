@@ -179,5 +179,5 @@ export const shared = {
     email: 'wardana.dwi.mulia@gmail.com',
     githubHandle: 'NatsumeAoii',
     linkedinHandle: 'wardana-dwi-mulia',
-    lastUpdated: 'July 2026',
+    lastUpdated: 'November 2026',
 } as const;
