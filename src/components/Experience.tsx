@@ -18,7 +18,9 @@ export function Experience() {
         <Section id="experience" title={e.title}>
             <div className="jobs">
                 {e.items.map((item, index) => {
-                    const key = `${item.company}-${item.period}`;
+                    // Items are parallel across locales; the index keeps
+                    // expansion state stable when the translated period changes.
+                    const key = String(index);
                     const listId = `job-points-${index}`;
                     const expanded = !!expandedMap[key];
                     const needsToggle = item.points.length > INITIAL_POINTS;

@@ -1,6 +1,7 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 import { Experience } from '../components/Experience';
+import { LanguageSwitcher } from '../components/Controls';
 import { SettingsProvider } from '../context/settings';
 
 function renderExperience() {
@@ -41,6 +42,26 @@ describe('experience expand/collapse', () => {
 
         await waitFor(() => {
             expect(screen.getAllByText(/show more|selengkapnya/i).length).toBeGreaterThanOrEqual(1);
+        });
+    });
+
+    it('keeps an expanded item open across language switches', async () => {
+        render(
+            <SettingsProvider>
+                <LanguageSwitcher />
+                <Experience />
+            </SettingsProvider>,
+        );
+
+        fireEvent.click(screen.getAllByText(/show more|selengkapnya/i)[0]);
+        await waitFor(() => {
+            expect(screen.getByText(/show less|lebih sedikit/i)).toBeInTheDocument();
+        });
+
+        fireEvent.click(screen.getByRole('button', { name: /switch to indonesian/i }));
+
+        await waitFor(() => {
+            expect(screen.getByText(/lebih sedikit/i)).toBeInTheDocument();
         });
     });
 });

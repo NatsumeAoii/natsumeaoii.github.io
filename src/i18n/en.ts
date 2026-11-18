@@ -2,6 +2,11 @@ import type { Translation } from './types';
 import { REPOS, TAGS } from './types';
 
 export const en: Translation = {
+    meta: {
+        title: 'Wardana Dwi Mulia | Portfolio',
+        description:
+            'Portfolio of Wardana Dwi Mulia, an Informatics Engineering graduate working in IT support, quality assurance, manual testing, and data management. See selected work, experience, and capabilities.',
+    },
     nav: {
         about: 'Profile',
         experience: 'Experience',
@@ -111,7 +116,7 @@ export const en: Translation = {
                 demo: REPOS.aetherisDemo,
                 year: '2024',
                 featured: true,
-                image: '/projects/aetheris.png',
+                image: '/projects/aetheris.webp',
             },
             {
                 key: 'hardware',
@@ -123,7 +128,7 @@ export const en: Translation = {
                 demo: REPOS.hardwareDemo,
                 year: '2026',
                 status: 'active',
-                image: '/projects/hardware.png',
+                image: '/projects/hardware.webp',
             },
             {
                 key: 'igrs',
@@ -135,7 +140,7 @@ export const en: Translation = {
                 demo: REPOS.igrsDemo,
                 year: '2026',
                 status: 'active',
-                image: '/projects/igrs.png',
+                image: '/projects/igrs.webp',
             },
             {
                 key: 'surl',
@@ -147,7 +152,7 @@ export const en: Translation = {
                 demo: REPOS.surlDemo,
                 year: '2026',
                 status: 'active',
-                image: '/projects/surl.png',
+                image: '/projects/surl.webp',
             },
             {
                 key: 'bensin',
@@ -159,7 +164,7 @@ export const en: Translation = {
                 demo: REPOS.bensinDemo,
                 year: '2026',
                 status: 'active',
-                image: '/projects/bensin.png',
+                image: '/projects/bensin.webp',
             },
             {
                 key: 'omniclouds',
@@ -170,7 +175,7 @@ export const en: Translation = {
                 repo: REPOS.omniclouds,
                 year: '2026',
                 status: 'in-progress',
-                image: '/projects/omniclouds.png',
+                image: '/projects/omniclouds.webp',
             },
             {
                 key: 'dnd5e',
@@ -182,7 +187,7 @@ export const en: Translation = {
                 demo: REPOS.dnd5eDemo,
                 year: '2025',
                 featured: true,
-                image: '/projects/dnd5e.png',
+                image: '/projects/dnd5e.webp',
             },
             {
                 key: 'hoyolab',
@@ -192,7 +197,7 @@ export const en: Translation = {
                 tags: [...TAGS.hoyolab],
                 repo: REPOS.hoyolab,
                 year: '2024',
-                image: '/projects/hoyolab.png',
+                image: '/projects/hoyolab.webp',
             },
             {
                 key: 'telegram',
@@ -202,7 +207,7 @@ export const en: Translation = {
                 tags: [...TAGS.telegram],
                 repo: REPOS.telegram,
                 year: '2024',
-                image: '/projects/telegram.png',
+                image: '/projects/telegram.webp',
             },
             {
                 key: 'saw',
@@ -316,6 +321,12 @@ export const en: Translation = {
         errorMaxLength: (max) => `Must be at most ${max} characters.`,
         errorEmail: 'Please enter a valid email address.',
     },
+    errorBoundary: {
+        title: 'Something went wrong',
+        description:
+            'An unexpected error occurred while rendering this page. Reloading usually fixes it.',
+        reload: 'Reload page',
+    },
     footer: {
         lastUpdated: 'Last updated',
     },
@@ -324,6 +335,8 @@ export const en: Translation = {
         switchToLight: 'Switch to light theme',
         switchToDark: 'Switch to dark theme',
         toggleLanguage: 'Switch language',
+        switchToEnglish: 'Switch to English',
+        switchToIndonesian: 'Switch to Indonesian',
         portfolioIndex: 'Portfolio index',
         sections: 'Sections',
         skipToContent: 'Skip to content',

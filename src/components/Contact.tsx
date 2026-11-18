@@ -46,6 +46,29 @@ function validate(
     return errors;
 }
 
+type SubmitState = 'idle' | 'success' | 'error';
+
+function buildMailto(name: string, email: string, subject: string, message: string): string {
+    return `mailto:${shared.email}?subject=${encodeURIComponent(subject.trim())}&body=${encodeURIComponent(
+        `Name: ${name.trim()}\nEmail: ${email.trim()}\n\n${message.trim()}`,
+    )}`;
+}
+
+function openMailClient(mailto: string): boolean {
+    const anchor = document.createElement('a');
+    try {
+        anchor.href = mailto;
+        anchor.style.display = 'none';
+        document.body.appendChild(anchor);
+        anchor.click();
+        return true;
+    } catch {
+        return false;
+    } finally {
+        anchor.remove();
+    }
+}
+
 export function Contact() {
     const { t } = useSettings();
     const c = t.contact;
@@ -56,13 +79,18 @@ export function Contact() {
     const [message, setMessage] = useState('');
     const [honeypot, setHoneypot] = useState('');
     const [errors, setErrors] = useState<FieldErrors>({});
-    const [submitted, setSubmitted] = useState(false);
+    const [submitState, setSubmitState] = useState<SubmitState>('idle');
     const formRef = useRef<HTMLFormElement>(null);
     const resetTimerRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
     const nameRef = useRef<HTMLInputElement>(null);
     const emailRef = useRef<HTMLInputElement>(null);
     const subjectRef = useRef<HTMLInputElement>(null);
     const messageRef = useRef<HTMLTextAreaElement>(null);
+
+    const mailtoHref = useMemo(
+        () => buildMailto(name, email, subject, message),
+        [name, email, subject, message],
+    );
 
     const fieldRefs = useMemo(
         () => ({
@@ -77,9 +105,20 @@ export function Contact() {
     // Clear reset timer on unmount.
     useEffect(() => () => clearTimeout(resetTimerRef.current), []);
 
-    const handleBlur = useCallback(() => {
-        setErrors(validate(name, email, subject, message, c));
-    }, [name, email, subject, message, c]);
+    // Validate only the field that lost focus, so untouched fields do not
+    // show errors before the user has had a chance to fill them.
+    const handleBlur = useCallback(
+        (field: keyof FieldErrors) => {
+            const fieldErrors = validate(name, email, subject, message, c);
+            setErrors((prev) => {
+                const next = { ...prev };
+                if (fieldErrors[field]) next[field] = fieldErrors[field];
+                else delete next[field];
+                return next;
+            });
+        },
+        [name, email, subject, message, c],
+    );
 
     const handleSubmit = useCallback(
         (e: FormEvent) => {
@@ -90,6 +129,7 @@ export function Contact() {
 
             const fieldErrors = validate(name, email, subject, message, c);
             setErrors(fieldErrors);
+            setSubmitState('idle');
 
             if (Object.keys(fieldErrors).length > 0) {
                 // Focus first invalid field.
@@ -98,31 +138,20 @@ export function Contact() {
                 return;
             }
 
-            const mailto = `mailto:${shared.email}?subject=${encodeURIComponent(subject.trim())}&body=${encodeURIComponent(
-                `Name: ${name.trim()}\nEmail: ${email.trim()}\n\n${message.trim()}`,
-            )}`;
-
-            // Use a temporary link element to trigger mailto. More reliable than
-            // window.open, which returns null on success for protocol handlers in
-            // most browsers.
-            try {
-                const a = document.createElement('a');
-                a.href = mailto;
-                a.style.display = 'none';
-                document.body.appendChild(a);
-                a.click();
-                document.body.removeChild(a);
-            } catch {
-                // Navigation may fail in restricted environments; the fallback
-                // link is always visible so the user can send manually.
+            // A mailto handler gives no success signal, so the only detectable
+            // failure is the click itself throwing (e.g. sandboxed contexts).
+            // Keep the draft intact when that happens.
+            if (!openMailClient(mailtoHref)) {
+                setSubmitState('error');
+                return;
             }
 
             // Clear any pending reset timer from a previous rapid re-submit.
             clearTimeout(resetTimerRef.current);
 
-            setSubmitted(true);
+            setSubmitState('success');
             resetTimerRef.current = setTimeout(() => {
-                setSubmitted(false);
+                setSubmitState('idle');
                 setName('');
                 setEmail('');
                 setSubject('');
@@ -130,7 +159,7 @@ export function Contact() {
                 setErrors({});
             }, 5000);
         },
-        [name, email, subject, message, honeypot, c, fieldRefs],
+        [name, email, subject, message, honeypot, c, fieldRefs, mailtoHref],
     );
 
     const channels = [
@@ -178,7 +207,7 @@ export function Contact() {
                     ))}
                 </div>
 
-                {submitted ? (
+                {submitState === 'success' ? (
                     <div className="form-success" role="status">
                         <div>
                             <p>{c.formSuccess}</p>
@@ -211,7 +240,9 @@ export function Contact() {
                                 autoComplete="name"
                                 value={name}
                                 onChange={(e) => setName(e.target.value)}
-                                onBlur={handleBlur}
+                                onBlur={() => handleBlur('name')}
+                                required
+                                aria-required="true"
                                 aria-describedby={errors.name ? 'err-name' : undefined}
                                 aria-invalid={!!errors.name}
                             />
@@ -231,7 +262,9 @@ export function Contact() {
                                 autoComplete="email"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
-                                onBlur={handleBlur}
+                                onBlur={() => handleBlur('email')}
+                                required
+                                aria-required="true"
                                 aria-describedby={errors.email ? 'err-email' : undefined}
                                 aria-invalid={!!errors.email}
                             />
@@ -250,7 +283,9 @@ export function Contact() {
                                 type="text"
                                 value={subject}
                                 onChange={(e) => setSubject(e.target.value)}
-                                onBlur={handleBlur}
+                                onBlur={() => handleBlur('subject')}
+                                required
+                                aria-required="true"
                                 aria-describedby={errors.subject ? 'err-subject' : undefined}
                                 aria-invalid={!!errors.subject}
                             />
@@ -269,7 +304,9 @@ export function Contact() {
                                 rows={4}
                                 value={message}
                                 onChange={(e) => setMessage(e.target.value)}
-                                onBlur={handleBlur}
+                                onBlur={() => handleBlur('message')}
+                                required
+                                aria-required="true"
                                 aria-describedby={errors.message ? 'err-message' : undefined}
                                 aria-invalid={!!errors.message}
                             />
@@ -279,6 +316,12 @@ export function Contact() {
                                 </p>
                             )}
                         </div>
+
+                        {submitState === 'error' && (
+                            <p className="form-error" role="alert">
+                                {c.formError} <a href={mailtoHref}>{shared.email}</a>
+                            </p>
+                        )}
 
                         <button type="submit" className="btn-primary">
                             {c.formSubmit}

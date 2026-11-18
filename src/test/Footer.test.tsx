@@ -33,4 +33,11 @@ describe('footer', () => {
         expect(screen.getByRole('link', { name: 'LinkedIn' })).toBeInTheDocument();
         expect(screen.getByRole('link', { name: 'Email' })).toBeInTheDocument();
     });
+
+    it('renders the resume download link', () => {
+        renderFooter();
+        const link = screen.getByRole('link', { name: /résumé|cv/i });
+        expect(link).toHaveAttribute('href', '/Wardana-Dwi-Mulia-CV.pdf');
+        expect(link).toHaveAttribute('download');
+    });
 });

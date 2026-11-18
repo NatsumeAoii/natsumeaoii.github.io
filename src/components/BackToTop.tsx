@@ -14,8 +14,11 @@ export function BackToTop() {
     }, []);
 
     const handleClick = () => {
+        const reducedMotion =
+            typeof window.matchMedia === 'function' &&
+            window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         try {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            window.scrollTo({ top: 0, behavior: reducedMotion ? 'auto' : 'smooth' });
         } catch {
             window.location.hash = '#top';
         }

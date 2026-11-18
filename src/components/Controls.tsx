@@ -19,33 +19,22 @@ export function ThemeToggle() {
     );
 }
 
-/** EN / ID segmented language switcher. */
+/** Language toggle button: shows the language you will switch to. */
 export function LanguageSwitcher() {
-    const { locale, setLocale, t } = useSettings();
+    const { locale, toggleLocale, t } = useSettings();
+    const isEnglish = locale === 'en';
+    const code = isEnglish ? 'ID' : 'EN';
+    const label = isEnglish ? t.a11y.switchToIndonesian : t.a11y.switchToEnglish;
 
-    return (
-        <div role="group" aria-label={t.a11y.toggleLanguage} className="lang-switch">
-            <LangButton active={locale === 'en'} onClick={() => setLocale('en')} label="EN" />
-            <LangButton active={locale === 'id'} onClick={() => setLocale('id')} label="ID" />
-        </div>
-    );
-}
-
-interface LangButtonProps {
-    active: boolean;
-    onClick: () => void;
-    label: string;
-}
-
-function LangButton({ active, onClick, label }: LangButtonProps) {
     return (
         <button
             type="button"
-            onClick={onClick}
-            aria-pressed={active}
-            className="lang-btn"
+            onClick={toggleLocale}
+            aria-label={`${label} (${code})`}
+            title={label}
+            className="control-btn lang-toggle"
         >
-            {label}
+            {code}
         </button>
     );
 }

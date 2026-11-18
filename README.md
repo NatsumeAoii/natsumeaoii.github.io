@@ -46,17 +46,16 @@ Deploys automatically to GitHub Pages on push to `main` via GitHub Actions.
 
 ```
 src/
-├── main.tsx                       # Entry point — mounts React with SettingsProvider
-├── App.tsx                        # Root layout — composes all sections + routing
-├── index.css                      # Tailwind v4 config, CSS custom properties, animations
-├── constants.ts                   # Shared app constants (section IDs)
+├── main.tsx                       # Entry point — restores GitHub Pages redirects, mounts React
+├── App.tsx                        # Root layout — single page plus the 404 view
+├── index.css                      # Tailwind v4 theme tokens, fonts, and layout styles
+├── constants.ts                   # Shared section IDs
+├── redirect.ts                    # Safe ?redirect= parsing for GitHub Pages
 ├── vite-env.d.ts                  # Vite client type reference
 ├── context/
-│   └── settings.tsx               # Theme + locale state (React context)
+│   └── settings.tsx               # Theme + locale state and document metadata
 ├── hooks/
-│   ├── useReveal.ts               # IntersectionObserver-based scroll-reveal
-│   ├── useActiveSection.ts        # Tracks which nav section is in view
-│   └── useSectionBlur.ts          # Progressive blur on scroll-away sections
+│   └── useActiveSection.ts        # Tracks which nav section is in view
 ├── i18n/
 │   ├── types.ts                   # Shared types (Locale, Translation) and language-neutral constants
 │   ├── en.ts                      # English translation object
@@ -64,7 +63,6 @@ src/
 │   └── index.ts                   # Barrel re-export
 ├── components/                    # Presentational components
 │   ├── About.tsx                  # About / education section
-│   ├── Background.tsx             # Animated decorative background
 │   ├── BackToTop.tsx              # Floating back-to-top button
 │   ├── Contact.tsx                # Contact form + direct channels
 │   ├── Controls.tsx               # Theme toggle + language switcher
@@ -74,19 +72,22 @@ src/
 │   ├── Hero.tsx                   # Hero section with role carousel
 │   ├── icons.tsx                  # Inline SVG icon components
 │   ├── Nav.tsx                    # Fixed navigation bar (desktop + mobile)
-│   ├── Projects.tsx               # Project grid with filtering + pagination
-│   ├── Section.tsx                # Reusable section wrapper with reveal
+│   ├── Projects.tsx               # Project list with filtering + pagination
+│   ├── Section.tsx                # Reusable numbered section wrapper
 │   └── Skills.tsx                 # Skills, certifications, and languages
 ├── pages/
 │   └── NotFound.tsx               # 404 page
 └── test/
     ├── setup.ts                   # Vitest setup (jsdom mocks)
     ├── App.test.tsx               # Smoke tests, routing, mobile menu
-    ├── Contact.test.tsx           # Form validation tests
-    ├── Controls.test.tsx          # Theme + language toggle tests
+    ├── BackToTop.test.tsx         # Reduced-motion scroll behavior
+    ├── Contact.test.tsx           # Form validation + mailto tests
+    ├── Controls.test.tsx          # Theme, language, and metadata tests
+    ├── ErrorBoundary.test.tsx     # Localized fallback tests
     ├── Experience.test.tsx        # Expand/collapse tests
     ├── Footer.test.tsx            # Footer rendering tests
-    └── Projects.test.tsx          # Filtering + pagination tests
+    ├── Projects.test.tsx          # Filtering + pagination tests
+    └── redirect.test.ts           # GitHub Pages redirect parsing tests
 ```
 
 ## Editing Content

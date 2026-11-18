@@ -1,5 +1,4 @@
 import { lazy, Suspense } from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { About } from './components/About';
 import { BackToTop } from './components/BackToTop';
 import { Contact } from './components/Contact';
@@ -27,31 +26,33 @@ function PortfolioPage() {
     );
 }
 
+// Single page plus a 404. The GitHub Pages 404.html redirect restores the
+// original path before render, so a pathname check covers every route.
+function isHomePath() {
+    return window.location.pathname === '/';
+}
+
 export default function App() {
     const { t } = useSettings();
+    const isHome = isHomePath();
 
     return (
-        <ErrorBoundary>
-            <BrowserRouter>
-                <a href="#main-content" className="skip-link">
-                    {t.a11y.skipToContent}
-                </a>
+        <ErrorBoundary fallback={t.errorBoundary}>
+            <a href="#main-content" className="skip-link">
+                {t.a11y.skipToContent}
+            </a>
 
-                <div className="sheet">
-                    <Nav />
-                    <main id="main-content" className="sheet-main" tabIndex={-1}>
-                        <Suspense fallback={null}>
-                            <Routes>
-                                <Route path="/" element={<PortfolioPage />} />
-                                <Route path="*" element={<NotFound />} />
-                            </Routes>
-                        </Suspense>
-                        <Footer />
-                    </main>
-                </div>
+            <div id="top" className="sheet">
+                <Nav />
+                <main id="main-content" className="sheet-main" tabIndex={-1}>
+                    <Suspense fallback={null}>
+                        {isHome ? <PortfolioPage /> : <NotFound />}
+                    </Suspense>
+                    <Footer />
+                </main>
+            </div>
 
-                <BackToTop />
-            </BrowserRouter>
+            <BackToTop />
         </ErrorBoundary>
     );
 }

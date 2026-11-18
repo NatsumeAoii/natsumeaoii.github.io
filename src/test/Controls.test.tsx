@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 import { ThemeToggle, LanguageSwitcher } from '../components/Controls';
 import { SettingsProvider } from '../context/settings';
@@ -32,20 +32,31 @@ describe('theme toggle', () => {
     });
 });
 
-describe('language switch', () => {
-    it('switches to Indonesian when ID button is clicked', () => {
+describe('language toggle', () => {
+    it('switches to Indonesian when the language button is clicked', () => {
         renderControls();
-        const idBtn = screen.getAllByRole('button', { name: 'ID' })[0];
+        const idBtn = screen.getByRole('button', { name: /switch to indonesian/i });
         fireEvent.click(idBtn);
         expect(document.documentElement.getAttribute('lang')).toBe('id');
     });
 
-    it('switches back to English when EN button is clicked', () => {
+    it('shows the language it will switch to', () => {
         renderControls();
-        const idBtn = screen.getAllByRole('button', { name: 'ID' })[0];
-        fireEvent.click(idBtn);
-        const enBtn = screen.getAllByRole('button', { name: 'EN' })[0];
-        fireEvent.click(enBtn);
+
+        const toIndonesian = screen.getByRole('button', { name: /switch to indonesian/i });
+        expect(toIndonesian).toHaveTextContent('ID');
+
+        fireEvent.click(toIndonesian);
+
+        expect(
+            screen.getByRole('button', { name: /ganti ke bahasa inggris/i }),
+        ).toHaveTextContent('EN');
+    });
+
+    it('switches back to English when the language button is clicked', () => {
+        renderControls();
+        fireEvent.click(screen.getByRole('button', { name: /switch to indonesian/i }));
+        fireEvent.click(screen.getByRole('button', { name: /ganti ke bahasa inggris/i }));
         expect(document.documentElement.getAttribute('lang')).toBe('en');
     });
 });
@@ -59,9 +70,32 @@ describe('first visit defaults', () => {
 
         expect(document.documentElement.getAttribute('data-theme')).toBe('light');
         expect(document.documentElement.getAttribute('lang')).toBe('id');
-        expect(screen.getAllByRole('button', { name: 'ID' })[0]).toHaveAttribute(
-            'aria-pressed',
-            'true',
-        );
+        expect(
+            screen.getByRole('button', { name: /ganti ke bahasa inggris/i }),
+        ).toHaveTextContent('EN');
+    });
+});
+
+describe('document metadata', () => {
+    it('follows the active locale', async () => {
+        const description = document.createElement('meta');
+        description.setAttribute('name', 'description');
+        document.head.appendChild(description);
+
+        renderControls();
+
+        await waitFor(() => {
+            expect(document.title).toBe('Wardana Dwi Mulia | Portfolio');
+        });
+        expect(description.content).toContain('Portfolio of Wardana');
+
+        fireEvent.click(screen.getByRole('button', { name: /switch to indonesian/i }));
+
+        await waitFor(() => {
+            expect(document.title).toBe('Wardana Dwi Mulia | Portofolio');
+        });
+        expect(description.content).toContain('Portofolio Wardana');
+
+        description.remove();
     });
 });

@@ -1,5 +1,4 @@
 import { render, screen } from '@testing-library/react';
-import { MemoryRouter } from 'react-router-dom';
 import { describe, expect, it } from 'vitest';
 import App from '../App';
 import { Hero } from '../components/Hero';
@@ -93,9 +92,7 @@ describe('404 routing', () => {
     it('renders 404 page for unknown routes', () => {
         render(
             <SettingsProvider>
-                <MemoryRouter initialEntries={['/about']}>
-                    <NotFound />
-                </MemoryRouter>
+                <NotFound />
             </SettingsProvider>,
         );
         expect(screen.getByText(/404/)).toBeInTheDocument();
@@ -105,11 +102,19 @@ describe('404 routing', () => {
     it('renders back to portfolio link on 404', () => {
         render(
             <SettingsProvider>
-                <MemoryRouter initialEntries={['/unknown']}>
-                    <NotFound />
-                </MemoryRouter>
+                <NotFound />
             </SettingsProvider>,
         );
         expect(screen.getByRole('link', { name: /back to portfolio|kembali ke portofolio/i })).toBeInTheDocument();
+    });
+
+    it('renders the 404 page when the path is not the home page', async () => {
+        window.history.replaceState({}, '', '/about');
+        try {
+            renderApp();
+            expect(await screen.findByText(/404/)).toBeInTheDocument();
+        } finally {
+            window.history.replaceState({}, '', '/');
+        }
     });
 });

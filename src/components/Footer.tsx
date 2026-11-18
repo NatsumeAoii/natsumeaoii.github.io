@@ -25,6 +25,9 @@ export function Footer() {
                     LinkedIn
                 </a>
                 <a href={shared.links.email}>{t.contact.emailLabel}</a>
+                <a href={shared.resumeUrl} download>
+                    {t.nav.resume}
+                </a>
                 <a href="/#top">{t.a11y.backToTop}</a>
             </div>
         </footer>

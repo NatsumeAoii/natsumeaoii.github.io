@@ -137,6 +137,19 @@ export function Projects() {
     const [filtersOpen, setFiltersOpen] = useState(activeTags.length > 0);
     const [visibleCount, setVisibleCount] = useState(INITIAL_COUNT);
 
+    // Follow hash navigation (nav links, back/forward) so filter state always
+    // matches the URL.
+    useEffect(() => {
+        const syncFromHash = () => {
+            const tags = parseFilterFromHash();
+            setActiveTags(tags);
+            setVisibleCount(INITIAL_COUNT);
+            if (tags.length > 0) setFiltersOpen(true);
+        };
+        window.addEventListener('hashchange', syncFromHash);
+        return () => window.removeEventListener('hashchange', syncFromHash);
+    }, []);
+
     // Sync filters to URL hash. Skip the initial mount so we don't
     // overwrite a section anchor (e.g. #about) the user navigated to.
     const isFirstFilterSync = useRef(true);
@@ -145,6 +158,14 @@ export function Projects() {
             isFirstFilterSync.current = false;
             return;
         }
+        // A hashchange may already describe this state (e.g. #about with no
+        // filters); rewriting it would erase the section anchor.
+        const hashTags = parseFilterFromHash();
+        const matchesHash =
+            hashTags.length === activeTags.length &&
+            hashTags.every((tag) => activeTags.includes(tag));
+        if (matchesHash) return;
+
         if (activeTags.length > 0) {
             history.replaceState(null, '', `#projects?tags=${activeTags.join(',')}`);
         } else {

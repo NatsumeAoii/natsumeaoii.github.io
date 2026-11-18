@@ -66,6 +66,37 @@ describe('project filtering', () => {
             expect(screen.queryByText(/clear filters|hapus filter/i)).not.toBeInTheDocument();
         });
     });
+
+    it('clears filters when the hash moves to another section', async () => {
+        renderProjects();
+        openFilters();
+        fireEvent.click(screen.getByRole('button', { name: 'Lua' }));
+
+        await waitFor(() => {
+            expect(screen.getByText('FiveM Roleplay Server')).toBeInTheDocument();
+        });
+
+        history.replaceState(null, '', '#about');
+        fireEvent(window, new Event('hashchange'));
+
+        await waitFor(() => {
+            expect(screen.queryByText(/clear filters|hapus filter/i)).not.toBeInTheDocument();
+        });
+        expect(screen.getAllByText('Aetheris CharGen').length).toBeGreaterThan(0);
+        expect(window.location.hash).toBe('#about');
+    });
+
+    it('restores filters when the hash changes to a filter URL', async () => {
+        renderProjects();
+
+        history.replaceState(null, '', '#projects?tags=Lua');
+        fireEvent(window, new Event('hashchange'));
+
+        await waitFor(() => {
+            expect(screen.getByText('FiveM Roleplay Server')).toBeInTheDocument();
+        });
+        expect(screen.queryByText('Aetheris CharGen')).not.toBeInTheDocument();
+    });
 });
 
 describe('hover preview', () => {
@@ -76,7 +107,7 @@ describe('hover preview', () => {
 
         expect(preview).toHaveAttribute('aria-hidden', 'true');
         expect(preview).toHaveTextContent('Aetheris CharGen');
-        expect(preview?.querySelector('img')).toHaveAttribute('src', '/projects/aetheris.png');
+        expect(preview?.querySelector('img')).toHaveAttribute('src', '/projects/aetheris.webp');
         expect(preview?.querySelector('img')).toHaveAttribute('alt', '');
     });
 
@@ -142,7 +173,7 @@ describe('pagination', () => {
             expect(rows.length).toBe(8);
         });
 
-        const idBtn = screen.getAllByRole('button', { name: 'ID' })[0];
+        const idBtn = screen.getByRole('button', { name: /switch to indonesian/i });
         fireEvent.click(idBtn);
 
         await waitFor(() => {

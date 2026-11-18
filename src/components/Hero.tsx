@@ -9,7 +9,7 @@ export function Hero() {
     const { t } = useSettings();
 
     return (
-        <header id="top" className="masthead">
+        <header className="masthead">
             <p className="kicker">{t.hero.kicker}</p>
 
             <h1 className="ledger-title">

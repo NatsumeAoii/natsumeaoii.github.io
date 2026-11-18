@@ -45,6 +45,10 @@ export interface Certification {
 }
 
 export interface Translation {
+    meta: {
+        title: string;
+        description: string;
+    };
     nav: {
         about: string;
         experience: string;
@@ -115,6 +119,11 @@ export interface Translation {
         errorMaxLength: (max: number) => string;
         errorEmail: string;
     };
+    errorBoundary: {
+        title: string;
+        description: string;
+        reload: string;
+    };
     footer: {
         lastUpdated: string;
     };
@@ -123,6 +132,8 @@ export interface Translation {
         switchToLight: string;
         switchToDark: string;
         toggleLanguage: string;
+        switchToEnglish: string;
+        switchToIndonesian: string;
         portfolioIndex: string;
         sections: string;
         skipToContent: string;

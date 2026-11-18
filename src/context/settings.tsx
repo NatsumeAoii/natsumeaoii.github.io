@@ -75,7 +75,10 @@ export function SettingsProvider({ children }: { children: ReactNode }) {
     }, [theme]);
 
     useEffect(() => {
+        const { title, description } = translations[locale].meta;
         document.documentElement.setAttribute('lang', locale);
+        document.title = title;
+        document.querySelector('meta[name="description"]')?.setAttribute('content', description);
         try {
             window.localStorage.setItem(LOCALE_KEY, locale);
         } catch {

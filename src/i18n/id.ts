@@ -2,6 +2,11 @@ import type { Translation } from './types';
 import { REPOS, TAGS } from './types';
 
 export const id: Translation = {
+    meta: {
+        title: 'Wardana Dwi Mulia | Portofolio',
+        description:
+            'Portofolio Wardana Dwi Mulia, lulusan Teknik Informatika yang bekerja di bidang IT support, quality assurance, pengujian manual, dan manajemen data. Lihat karya pilihan, pengalaman, dan kemampuannya.',
+    },
     nav: {
         about: 'Profil',
         experience: 'Pengalaman',
@@ -111,7 +116,7 @@ export const id: Translation = {
                 demo: REPOS.aetherisDemo,
                 year: '2024',
                 featured: true,
-                image: '/projects/aetheris.png',
+                image: '/projects/aetheris.webp',
             },
             {
                 key: 'hardware',
@@ -123,7 +128,7 @@ export const id: Translation = {
                 demo: REPOS.hardwareDemo,
                 year: '2026',
                 status: 'active',
-                image: '/projects/hardware.png',
+                image: '/projects/hardware.webp',
             },
             {
                 key: 'igrs',
@@ -135,7 +140,7 @@ export const id: Translation = {
                 demo: REPOS.igrsDemo,
                 year: '2026',
                 status: 'active',
-                image: '/projects/igrs.png',
+                image: '/projects/igrs.webp',
             },
             {
                 key: 'surl',
@@ -147,7 +152,7 @@ export const id: Translation = {
                 demo: REPOS.surlDemo,
                 year: '2026',
                 status: 'active',
-                image: '/projects/surl.png',
+                image: '/projects/surl.webp',
             },
             {
                 key: 'bensin',
@@ -159,7 +164,7 @@ export const id: Translation = {
                 demo: REPOS.bensinDemo,
                 year: '2026',
                 status: 'active',
-                image: '/projects/bensin.png',
+                image: '/projects/bensin.webp',
             },
             {
                 key: 'omniclouds',
@@ -170,7 +175,7 @@ export const id: Translation = {
                 repo: REPOS.omniclouds,
                 year: '2026',
                 status: 'in-progress',
-                image: '/projects/omniclouds.png',
+                image: '/projects/omniclouds.webp',
             },
             {
                 key: 'dnd5e',
@@ -182,7 +187,7 @@ export const id: Translation = {
                 demo: REPOS.dnd5eDemo,
                 year: '2025',
                 featured: true,
-                image: '/projects/dnd5e.png',
+                image: '/projects/dnd5e.webp',
             },
             {
                 key: 'hoyolab',
@@ -192,7 +197,7 @@ export const id: Translation = {
                 tags: [...TAGS.hoyolab],
                 repo: REPOS.hoyolab,
                 year: '2024',
-                image: '/projects/hoyolab.png',
+                image: '/projects/hoyolab.webp',
             },
             {
                 key: 'telegram',
@@ -202,7 +207,7 @@ export const id: Translation = {
                 tags: [...TAGS.telegram],
                 repo: REPOS.telegram,
                 year: '2024',
-                image: '/projects/telegram.png',
+                image: '/projects/telegram.webp',
             },
             {
                 key: 'saw',
@@ -316,6 +321,12 @@ export const id: Translation = {
         errorMaxLength: (max) => `Maksimal ${max} karakter.`,
         errorEmail: 'Masukkan alamat email yang valid.',
     },
+    errorBoundary: {
+        title: 'Terjadi kesalahan',
+        description:
+            'Terjadi kesalahan tak terduga saat merender halaman ini. Memuat ulang biasanya dapat memperbaikinya.',
+        reload: 'Muat ulang halaman',
+    },
     footer: {
         lastUpdated: 'Terakhir diperbarui',
     },
@@ -324,6 +335,8 @@ export const id: Translation = {
         switchToLight: 'Ganti ke tema terang',
         switchToDark: 'Ganti ke tema gelap',
         toggleLanguage: 'Ganti bahasa',
+        switchToEnglish: 'Ganti ke bahasa Inggris',
+        switchToIndonesian: 'Ganti ke bahasa Indonesia',
         portfolioIndex: 'Indeks portofolio',
         sections: 'Bagian',
         skipToContent: 'Langsung ke konten',

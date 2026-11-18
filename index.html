@@ -17,13 +17,10 @@
     <meta name="robots" content="index, follow" />
     <meta name="theme-color" content="#f3f5f8" />
     <link rel="canonical" href="https://natsumeaoii.github.io/" />
-    <link rel="alternate" hreflang="en" href="https://natsumeaoii.github.io/" />
-    <link rel="alternate" hreflang="id" href="https://natsumeaoii.github.io/" />
-    <link rel="alternate" hreflang="x-default" href="https://natsumeaoii.github.io/" />
 
     <!-- Icons & manifest -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="apple-touch-icon" href="/favicon.svg" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
 
     <!-- Open Graph -->
@@ -39,8 +36,9 @@
     <meta property="og:locale:alternate" content="en_US" />
     <meta
       property="og:image"
-      content="https://natsumeaoii.github.io/og-image.svg"
+      content="https://natsumeaoii.github.io/og-image.png"
     />
+    <meta property="og:image:type" content="image/png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="Wardana Dwi Mulia | Portofolio" />
@@ -54,8 +52,9 @@
     />
     <meta
       name="twitter:image"
-      content="https://natsumeaoii.github.io/og-image.svg"
+      content="https://natsumeaoii.github.io/og-image.png"
     />
+    <meta name="twitter:image:alt" content="Wardana Dwi Mulia | Portofolio" />
 
     <!-- Structured data: ProfilePage wrapping Person -->
     <script type="application/ld+json">
@@ -66,7 +65,7 @@
           "@type": "Person",
           "name": "Wardana Dwi Mulia",
           "url": "https://natsumeaoii.github.io/",
-          "image": "https://natsumeaoii.github.io/og-image.svg",
+          "image": "https://natsumeaoii.github.io/og-image.png",
           "jobTitle": "Lulusan Teknik Informatika",
           "email": "mailto:wardana.dwi.mulia@gmail.com",
           "address": {
@@ -98,9 +97,21 @@
       }
     </script>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..700&display=swap" rel="stylesheet" />
+    <!-- Fonts are self-hosted; preload the two used above the fold -->
+    <link
+      rel="preload"
+      href="/fonts/source-serif-4-latin-400-600-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/source-serif-4-latin-400-italic.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
     <script>
       // First visits start light and Indonesian. Stored choices win.
       // Stamps data-initial-theme / data-initial-locale so React's getInitial*()
