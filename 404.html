@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>404 | Halaman tidak ditemukan | Wardana Dwi Mulia</title>
+    <meta name="robots" content="noindex" />
+    <meta name="theme-color" content="#f3f5f8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script>
+      // SPA redirect for GitHub Pages: capture the path and redirect to the
+      // single-page app with the original URL preserved for the router.
+      (function (l) {
+        // Only redirect paths that look like real routes (not asset 404s).
+        var path = l.pathname;
+        // Skip if it looks like a file request (has extension).
+        if (/\.\w+$/.test(path)) return;
+
+        var redirect = path + l.search + l.hash;
+        l.replace(
+          l.protocol + '//' + l.host + '/?redirect=' + encodeURIComponent(redirect)
+        );
+      })(window.location);
+    </script>
+    <script>
+      // First visits are light. Stored choice wins. Mirrors index.html.
+      (function () {
+        var root = document.documentElement;
+        try {
+          var t = localStorage.getItem('portfolio-theme');
+          if (t !== 'light' && t !== 'dark') t = 'light';
+          root.setAttribute('data-theme', t);
+          var themeColor = document.querySelector('meta[name="theme-color"]');
+          if (themeColor) {
+            themeColor.setAttribute('content', t === 'dark' ? '#15181c' : '#f3f5f8');
+          }
+        } catch (e) {
+          root.setAttribute('data-theme', 'light');
+        }
+      })();
+    </script>
+    <style>
+      /* Mirrors the tokens in src/index.css. Keep in sync. */
+      :root {
+        color-scheme: light;
+        --void: #f3f5f8;
+        --card: #ffffff;
+        --ink: #101828;
+        --muted: #4f5a6b;
+        --line: rgba(16, 24, 40, 0.15);
+        --accent: #2447c9;
+        --accent-ink: #ffffff;
+      }
+      :root[data-theme="dark"] {
+        color-scheme: dark;
+        --void: #15181c;
+        --card: #1c2026;
+        --ink: #ece9e1;
+        --muted: #a49d91;
+        --line: rgba(236, 233, 225, 0.17);
+        --accent: #e0a33e;
+        --accent-ink: #1a1408;
+      }
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+      body {
+        min-height: 100dvh;
+        margin: 0;
+        display: grid;
+        place-items: center;
+        padding: 24px;
+        background: var(--void);
+        color: var(--ink);
+        font-family: Georgia, "Times New Roman", serif;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+      }
+      main {
+        width: min(480px, 100%);
+        padding-top: 28px;
+        border-top: 1px solid var(--line);
+      }
+      .kicker {
+        margin: 0;
+        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+        font-size: 11px;
+        font-weight: 500;
+        letter-spacing: 0.12em;
+        color: var(--accent);
+      }
+      h1 {
+        margin: 14px 0 0;
+        font-size: clamp(1.7rem, 3vw, 2.2rem);
+        font-weight: 500;
+        line-height: 1.1;
+        letter-spacing: -0.03em;
+      }
+      p {
+        margin: 12px 0 0;
+        max-width: 46ch;
+        color: var(--muted);
+      }
+      .note {
+        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+        font-size: 11px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+      a {
+        display: inline-flex;
+        min-height: 44px;
+        align-items: center;
+        margin-top: 24px;
+        padding: 0 20px;
+        background: var(--accent);
+        color: var(--accent-ink);
+        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+        font-size: 11px;
+        font-weight: 500;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+        text-underline-offset: 3px;
+      }
+      a:focus-visible {
+        outline: 2px solid var(--ink);
+        outline-offset: 3px;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <p class="kicker">404 / TIDAK DITEMUKAN</p>
+      <h1>Halaman tidak ditemukan</h1>
+      <p>Halaman yang Anda cari tidak ada atau sudah dipindahkan.</p>
+      <p class="note">Mengalihkan ke portofolio...</p>
+      <a href="/">Kembali ke portofolio</a>
+    </main>
+    <noscript>
+      <style>
+        .note {
+          display: none;
+        }
+      </style>
+    </noscript>
+  </body>
+</html>
